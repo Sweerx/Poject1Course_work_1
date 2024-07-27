@@ -1,3 +1,6 @@
+from datetime import datetime
+from typing import Any
+
 import pandas as pd
 
 
@@ -46,3 +49,21 @@ def get_greeting(time_data: str) -> str:
         return "Добрый день"
     else:
         return "Добрый вечер"
+
+def get_time_data() -> str:
+    """Возвращает текущее время"""
+    time_data = datetime.datetime.now()
+    return str(time_data)
+
+
+def get_card_number_list(transactions: list[dict[Any, Any]]) -> list:
+    """Выводит список уникальных номеров карт из списка транзакций"""
+    card_list_full = []
+    for transaction in transactions:
+        if transaction["card_number"]:
+            card_list_full.append(transaction["card_number"])
+    card_list_short = []
+    for card in card_list_full:
+        if card not in card_list_short and type(card) is str:
+            card_list_short.append(card)
+    return card_list_short
