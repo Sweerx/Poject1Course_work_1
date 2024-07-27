@@ -2,13 +2,8 @@ import json
 import logging
 from typing import Any
 
-from src.utils import (
-    fetch_and_show_currency_rates,
-    get_greeting,
-    get_xlsx_data_dict,
-    show_cards,
-    show_top_5_transactions,
-)
+from src.utils import (fetch_and_show_currency_rates, get_greeting, get_xlsx_data_dict, show_cards,
+                       show_top_5_transactions)
 
 logger = logging.getLogger("Logging")
 logger.setLevel(logging.INFO)
