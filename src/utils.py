@@ -12,6 +12,7 @@ load_dotenv()
 
 api_key = os.getenv("API_KEY")
 
+
 def get_xlsx_data_dict(file_name: str) -> list[dict] | str:
     """Считывает данные о финансовых операциях из excel файла и преобразует их в список словарей"""
     try:
@@ -46,6 +47,7 @@ def get_xlsx_data_dict(file_name: str) -> list[dict] | str:
     except Exception:
         return "Файл не может быть прочитан"
 
+
 def get_greeting(time_data: str) -> str:
     """Принимает текущее время и возвращает приветствие в зависимости от времени суток"""
     if 0 <= int(time_data[11:13]) <= 5:
@@ -56,6 +58,7 @@ def get_greeting(time_data: str) -> str:
         return "Добрый день"
     else:
         return "Добрый вечер"
+
 
 def get_time_data() -> str:
     """Возвращает текущее время"""
