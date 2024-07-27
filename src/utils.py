@@ -35,3 +35,14 @@ def get_xlsx_data_dict(file_name: str) -> list[dict] | str:
 
     except Exception:
         return "Файл не может быть прочитан"
+
+def get_greeting(time_data: str) -> str:
+    """Принимает текущее время и возвращает приветствие в зависимости от времени суток"""
+    if 0 <= int(time_data[11:13]) <= 5:
+        return "Доброй ночи"
+    elif 6 <= int(time_data[11:13]) <= 11:
+        return "Доброе утро"
+    elif 12 <= int(time_data[11:13]) <= 17:
+        return "Добрый день"
+    else:
+        return "Добрый вечер"
