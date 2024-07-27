@@ -67,3 +67,35 @@ def get_card_number_list(transactions: list[dict[Any, Any]]) -> list:
         if card not in card_list_short and type(card) is str:
             card_list_short.append(card)
     return card_list_short
+
+
+def get_operations_sum(time_data: str, transactions: list[dict[str, Any]], card_number: str) -> Any:
+    """Выводит общую сумму расходов по номеру карты в формате *1234"""
+    month = time_data[5:7] + "." + time_data[:4]
+    transactions_sum_list = []
+    for transaction in transactions:
+        date = str(transaction["payment_date"])
+        if transaction["card_number"] == card_number and date[3:] == month and transaction["payment_sum"] < 0:
+            transactions_sum_list.append(transaction["payment_sum"])
+    total_operations_sum = abs(sum(transactions_sum_list))
+    return total_operations_sum
+
+
+def get_cashback_sum(operations_sum: float) -> float:
+    """Высчитывает процент кэшбэка от общей суммы(1%)"""
+    cash_back_sum = round(operations_sum / 100, 2)
+    return cash_back_sum
+
+
+def show_cards(time_data: str, transactions: list | Any) -> list[dict]:
+    """Выводит информацию по каждой карте (последние 4 цифры карты, общая сумма расходов, кэшбэк)"""
+    show_cards_list = []
+    cards_list = get_card_number_list(transactions)
+    for card in cards_list:
+        total_spent = get_operations_sum(time_data, transactions, card)
+        card_dict = {}
+        card_dict["last_digits"] = card[1:]
+        card_dict["total_spent"] = get_operations_sum(time_data, transactions, card)
+        card_dict["cashback"] = get_cashback_sum(total_spent)
+        show_cards_list.append(card_dict)
+    return show_cards_list
