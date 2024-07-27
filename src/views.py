@@ -35,6 +35,8 @@ def main_page(date: str) -> Any:
     main_dict["top_transcations"] = top_transcations
     main_dict["currency_rates"] = currency_rates
     logger.info("Запись информации в json-файл")
-    main_dict_jsons = json.dumps(main_dict)
+    main_dict_jsons = json.dumps(main_dict, ensure_ascii=False, indent=4)
+    with open("main.json", "w", encoding="utf-8") as f:
+        json.dump(main_dict, f)
     logger.info("Стоп")
     return main_dict_jsons

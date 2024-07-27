@@ -156,8 +156,8 @@ def fetch_and_show_currency_rates() -> list[dict[str, Any]]:
         eur_rate = {"currency": "EUR", "rate": round(result["Valute"]["EUR"]["Value"], 2)}
         exchange_rates_list.append(usd_rate)
         exchange_rates_list.append(eur_rate)
-        with open("user_settings.json", "w") as f:
-            json.dump(exchange_rates_list, f)
+        with open("../user_settings.json", "w", encoding="utf-8") as f:
+            json.dump(exchange_rates_list, f, ensure_ascii=False)
         return exchange_rates_list
     except RequestException:
         return [{}]
