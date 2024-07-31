@@ -1,6 +1,8 @@
 import pytest
+
+
 @pytest.fixture
-def transactions():
+def transactions() -> list:
     return [
         {
             "operation_date": "27.09.2019 13:05:37",
@@ -88,8 +90,10 @@ def transactions():
             "rounded_operation_sum": 357.22,
         },
     ]
+
+
 @pytest.fixture
-def operations_1():
+def operations_1() -> list:
     return [
         {
             "Дата операции": "29.12.2021 16:22:08",

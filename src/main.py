@@ -16,4 +16,3 @@ if __name__ == "__main__":
     result_reports = spending_by_category(transcations_df, "Каршеринг", "2021-12-31 15:45:34")
 
     print(result_main_page)
-
